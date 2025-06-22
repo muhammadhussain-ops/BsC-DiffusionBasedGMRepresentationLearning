@@ -29,7 +29,7 @@ This repository contains code and experiments from my bachelor’s thesis, where
 ## Installation
 
 ```bash
-git clone https://github.com/muhammadhussain-ops/BsC-DiffusionBasedGMRepresentationLearning.git
+git clone https://github.com/<your-username>/BsC-DiffusionBasedGMRepresentationLearning.git
 cd BsC-DiffusionBasedGMRepresentationLearning
 python3 -m venv venv
 source venv/bin/activate
