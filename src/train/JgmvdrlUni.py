@@ -83,10 +83,14 @@ def train(dnet, enc, mog, dopt, eopt, mopt, loader, epochs=14):
     return losses
 
 # ---------- data ---------- #
-transform = transforms.ToTensor()
-mnist = datasets.MNIST("data", train=True, download=True, transform=transform)
-train_ds, _  = random_split(mnist, [1000, len(mnist)-1000])
-train_loader = DataLoader(train_ds, batch_size=32, shuffle=True)
+transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
+
+full_dataset = datasets.MNIST("data", train=True, download=True, transform=transform)
+train_size = 10000
+test_size = len(full_dataset) - train_size
+train_dataset, test_dataset = random_split(full_dataset, [train_size, test_size])
+
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 
 # ---------- modeller ---------- #
 dnet = DenoisingNN().to(device)
